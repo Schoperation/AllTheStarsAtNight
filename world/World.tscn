@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/2018-05-30_20.53.20_modified.png" type="Texture" id=2]
+[ext_resource path="res://world/SunCycle.gd" type="Script" id=3]
+[ext_resource path="res://environment/Tree.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Environment" id=1]
+ambient_light_color = Color( 0.529412, 0.529412, 0.529412, 1 )
+ambient_light_energy = 1.18
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.360784, 0.572549, 0.403922, 1 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="PhysicsMaterial" id=5]
+
+[sub_resource type="BoxShape" id=6]
+
+[sub_resource type="CubeMesh" id=7]
+
+[node name="Root" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0530567, 0.0858297, -0.00718069 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19714, 0 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.364714, 0.931119, 0, -0.93112, 0.364714, 0.340947, 17.9738, 9.39488 )
+environment = SubResource( 1 )
+current = true
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.999126, -0.0326856, 0.0260418, 0.00080103, 0.638, 0.770036, -0.0417838, -0.769343, 0.637469, -0.668901, 23.358, 1.22445 )
+light_energy = 1.35
+light_indirect_energy = 1.17
+shadow_enabled = true
+directional_shadow_normal_bias = 1.49
+script = ExtResource( 3 )
+
+[node name="Ground" type="StaticBody" parent="."]
+transform = Transform( 207.948, 0, 0, 0, 1, 0, 0, 0, 207.948, 0, -0.507965, 0 )
+
+[node name="TextureMesh" type="MeshInstance" parent="Ground"]
+transform = Transform( 0.446345, 0, 0, 0, 1, 0, 0, 0, 0.481447, 0, 0.413094, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+transform = Transform( 0.231527, 0, 0, 0, 1, 0, 0, 0, 0.239111, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Cube" type="StaticBody" parent="."]
+transform = Transform( 1.80086, 0.750013, 0.611401, 0.692414, -0.475698, -2.38994, -0.595389, 1.71533, -0.930112, 1.49763, 1.76615, -5.83788 )
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Cube"]
+transform = Transform( 1.00413, -0.00283445, -0.0142409, -0.0030973, 1.00213, 0.0106905, -0.00835305, 0.00573877, 1.02883, 0, 0, 0 )
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Cube"]
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="Tree" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9035, 2.39059, -21.0894 )
+
+[node name="Tree2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5505, 2.39059, -8.38781 )
+
+[node name="Tree3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2892, 2.39059, -37.5396 )
+
+[node name="Tree4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64848, 2.39059, -34.9762 )
+
+[node name="Tree5" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7663, 2.39059, -5.13204 )
+
+[node name="Tree6" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2825, 2.39059, 4.04832 )
+
+[node name="Tree7" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.17, 2.39059, 13.4861 )
+
+[node name="Tree8" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8027, 2.39059, 17.063 )
+
+[node name="Tree9" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.41854, 2.39059, 28.5979 )
+
+[node name="Tree10" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1067, 2.39059, 36.491 )
