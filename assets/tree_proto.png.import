@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/tree.png-bf64094b89302dd1be83aa5edf9988ef.s3tc.stex"
-path.etc2="res://.import/tree.png-bf64094b89302dd1be83aa5edf9988ef.etc2.stex"
+path.s3tc="res://.import/tree_proto.png-526819ee61c1709198305778dab4f39e.s3tc.stex"
+path.etc2="res://.import/tree_proto.png-526819ee61c1709198305778dab4f39e.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/tree.png"
-dest_files=[ "res://.import/tree.png-bf64094b89302dd1be83aa5edf9988ef.s3tc.stex", "res://.import/tree.png-bf64094b89302dd1be83aa5edf9988ef.etc2.stex" ]
+source_file="res://assets/tree_proto.png"
+dest_files=[ "res://.import/tree_proto.png-526819ee61c1709198305778dab4f39e.s3tc.stex", "res://.import/tree_proto.png-526819ee61c1709198305778dab4f39e.etc2.stex" ]
 
 [params]
 
@@ -25,7 +25,7 @@ flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

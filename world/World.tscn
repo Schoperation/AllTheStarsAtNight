@@ -1,25 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/2018-05-30_20.53.20_modified.png" type="Texture" id=2]
+[ext_resource path="res://world/Chunk.tscn" type="PackedScene" id=2]
 [ext_resource path="res://world/SunCycle.gd" type="Script" id=3]
 [ext_resource path="res://environment/Tree.tscn" type="PackedScene" id=4]
+[ext_resource path="res://world/WorldGeneration.gd" type="Script" id=5]
 
 [sub_resource type="Environment" id=1]
 ambient_light_color = Color( 0.529412, 0.529412, 0.529412, 1 )
 ambient_light_energy = 1.18
 
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.360784, 0.572549, 0.403922, 1 )
-albedo_texture = ExtResource( 2 )
-
-[sub_resource type="CubeMesh" id=3]
-material = SubResource( 2 )
-size = Vector3( 1, 1, 1 )
-
-[sub_resource type="BoxShape" id=4]
-
 [sub_resource type="PhysicsMaterial" id=5]
+bounce = 5.0
 
 [sub_resource type="BoxShape" id=6]
 
@@ -27,6 +19,7 @@ size = Vector3( 1, 1, 1 )
 
 [node name="Root" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0530567, 0.0858297, -0.00718069 )
+script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19714, 0 )
@@ -44,17 +37,7 @@ shadow_enabled = true
 directional_shadow_normal_bias = 1.49
 script = ExtResource( 3 )
 
-[node name="Ground" type="StaticBody" parent="."]
-transform = Transform( 207.948, 0, 0, 0, 1, 0, 0, 0, 207.948, 0, -0.507965, 0 )
-
-[node name="TextureMesh" type="MeshInstance" parent="Ground"]
-transform = Transform( 0.446345, 0, 0, 0, 1, 0, 0, 0, 0.481447, 0, 0.413094, 0 )
-mesh = SubResource( 3 )
-material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="Ground"]
-transform = Transform( 0.231527, 0, 0, 0, 1, 0, 0, 0, 0.239111, 0, 0, 0 )
-shape = SubResource( 4 )
+[node name="Chunk" parent="." instance=ExtResource( 2 )]
 
 [node name="Cube" type="StaticBody" parent="."]
 transform = Transform( 1.80086, 0.750013, 0.611401, 0.692414, -0.475698, -2.38994, -0.595389, 1.71533, -0.930112, 1.49763, 1.76615, -5.83788 )

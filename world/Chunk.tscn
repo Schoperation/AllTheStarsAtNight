@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/2018-05-30_20.53.20_modified.png" type="Texture" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="BoxShape" id=3]
+
+[node name="Chunk" type="StaticBody"]
+transform = Transform( 50, 0, 0, 0, 0.1, 0, 0, 0, 50, 0, 0, 0 )
+
+[node name="Texture" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Hitbox" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
