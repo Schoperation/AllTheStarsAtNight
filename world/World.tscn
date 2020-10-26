@@ -10,12 +10,12 @@
 ambient_light_color = Color( 0.529412, 0.529412, 0.529412, 1 )
 ambient_light_energy = 1.18
 
-[sub_resource type="PhysicsMaterial" id=5]
+[sub_resource type="PhysicsMaterial" id=2]
 bounce = 5.0
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=3]
 
-[sub_resource type="CubeMesh" id=7]
+[sub_resource type="CubeMesh" id=4]
 
 [node name="Root" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0530567, 0.0858297, -0.00718069 )
@@ -37,46 +37,19 @@ shadow_enabled = true
 directional_shadow_normal_bias = 1.49
 script = ExtResource( 3 )
 
-[node name="Chunk" parent="." instance=ExtResource( 2 )]
+[node name="OriginChunk" parent="." instance=ExtResource( 2 )]
 
-[node name="Cube" type="StaticBody" parent="."]
-transform = Transform( 1.80086, 0.750013, 0.611401, 0.692414, -0.475698, -2.38994, -0.595389, 1.71533, -0.930112, 1.49763, 1.76615, -5.83788 )
-physics_material_override = SubResource( 5 )
+[node name="Cube" type="StaticBody" parent="OriginChunk"]
+transform = Transform( 0.0360172, 0.0150003, 0.012228, 6.92414, -4.75698, -23.8994, -0.0119078, 0.0343066, -0.0186022, 0.0299526, 17.6615, -0.116758 )
+physics_material_override = SubResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Cube"]
+[node name="CollisionShape" type="CollisionShape" parent="OriginChunk/Cube"]
 transform = Transform( 1.00413, -0.00283445, -0.0142409, -0.0030973, 1.00213, 0.0106905, -0.00835305, 0.00573877, 1.02883, 0, 0, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Cube"]
-mesh = SubResource( 7 )
+[node name="MeshInstance" type="MeshInstance" parent="OriginChunk/Cube"]
+mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Tree" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9035, 2.39059, -21.0894 )
-
-[node name="Tree2" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5505, 2.39059, -8.38781 )
-
-[node name="Tree3" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2892, 2.39059, -37.5396 )
-
-[node name="Tree4" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64848, 2.39059, -34.9762 )
-
-[node name="Tree5" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7663, 2.39059, -5.13204 )
-
-[node name="Tree6" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2825, 2.39059, 4.04832 )
-
-[node name="Tree7" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.17, 2.39059, 13.4861 )
-
-[node name="Tree8" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8027, 2.39059, 17.063 )
-
-[node name="Tree9" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.41854, 2.39059, 28.5979 )
-
-[node name="Tree10" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1067, 2.39059, 36.491 )
+[node name="Tree" parent="OriginChunk" instance=ExtResource( 4 )]
+transform = Transform( 0.02, 0, 0, 0, 10, 0, 0, 0, 0.02, -0.21807, 23.9059, -0.421788 )
