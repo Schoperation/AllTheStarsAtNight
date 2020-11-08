@@ -39,7 +39,7 @@ func plantTrees(thick):
 	var coords = []
 	var currentX = -50
 	var currentZ = -50
-	var TRAIL_SIZE = rand_range(5, 8)
+	var TRAIL_SIZE = rand_range(7, 9)
 	
 	for i in range(numRows):
 		for j in range(numCols):
