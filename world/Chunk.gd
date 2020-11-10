@@ -2,7 +2,9 @@ extends StaticBody
 
 var id = 0
 var treeScene = preload("res://environment/Tree.tscn")
+var trailScene = preload("res://environment/Trail.tscn")
 var trailChunk = false
+var structureChunk = false
 
 # ID handling... spawn chunk is id 0
 func setID(id):
@@ -14,14 +16,23 @@ func getID() -> int:
 func _ready():
 	if transform.origin.x == 0 and transform.origin.z > 0:
 		trailChunk = true
+		
+	# Determine if we should spawn a structure here
+	var die = round(rand_range(0, 10))
+	if die == 7 and trailChunk:
+		structureChunk = true
 	
 # Populates the chunk with objects like trees
 func populate():
-	plantTrees(not trailChunk)
+	if not structureChunk:
+		plantTrees(not trailChunk)
 	
 	if trailChunk:
 		addTrail()
 	#todo add more like trails, rocks, and then... random structures woooahhh
+	if structureChunk:
+		addStruct()
+		print(id)
 		
 # Plants trees on the chunk
 func plantTrees(thick):
@@ -39,7 +50,7 @@ func plantTrees(thick):
 	var coords = []
 	var currentX = -50
 	var currentZ = -50
-	var TRAIL_SIZE = rand_range(7, 9)
+	var TRAIL_SIZE = rand_range(12, 16)
 	
 	for i in range(numRows):
 		for j in range(numCols):
@@ -66,5 +77,31 @@ func plantTrees(thick):
 		tree.translate(Vector3(coords[n][0], 1, coords[n][1]))
 		add_child(tree)
 		
+# Add a trail, if applicable
 func addTrail():
+	# Unlike the trees, we can just directly plop down a trail without creating a 2d array of coords.
+	var currentX = -0.3
+	var currentZ = -1
+	for i in range(10):
+		var amount = round(rand_range(3, 5))
+		for j in range(amount):
+			var trailPiece = trailScene.instance()
+			trailPiece.translate(Vector3(currentX, 1, currentZ))
+			trailPiece.scale = Vector3(0.1, 1, 0.1)
+			
+			# Random rotation
+			var rotation = round(rand_range(1, 4))
+			trailPiece.rotate_y(rotation * (PI/2))
+			
+			add_child(trailPiece)
+			currentX += 0.2
+		amount = round(rand_range(3, 5))
+		currentZ += 0.2
+		currentX = rand_range(-0.4, -0.1)
+		
+# Generates structures
+func addStruct():
+	
+	# Choose a structure
+	var pick = round(rand_range(1, 1))
 	pass

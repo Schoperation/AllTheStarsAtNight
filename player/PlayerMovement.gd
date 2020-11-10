@@ -1,6 +1,6 @@
 extends KinematicBody
 
-export var maxSpeed = 25
+export var maxSpeed = 15
 var currentSpeed = 0
 
 func _physics_process(delta):
