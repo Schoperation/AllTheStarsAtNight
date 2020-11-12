@@ -2,29 +2,41 @@ extends KinematicBody
 
 export var maxSpeed = 15
 var currentSpeed = 0
+var currentVel = Vector3()
 
 func _physics_process(delta):
-	var velocity = Vector3()
+	# Determine direction
+	var direction = Vector3()
 	if Input.is_action_pressed("move_down"):
-		velocity.z += 1
+		direction.z = 1
 	if Input.is_action_pressed("move_up"):
-		velocity.z -= 1
+		direction.z = -1
 	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
+		direction.x = -1
 	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
+		direction.x = 1
 	
-	if not Input.is_action_pressed("move_down") and not Input.is_action_pressed("move_up") and not Input.is_action_pressed("move_left") and not Input.is_action_pressed("move_right") and currentSpeed > 0:
-		currentSpeed -= 0.5
-	elif currentSpeed < 0:
-		currentSpeed = 0
-	elif currentSpeed <= maxSpeed:
+	# Accelerating
+	if direction and currentSpeed < maxSpeed:
 		currentSpeed += 0.5
+	# Decelerating
+	elif currentSpeed > 0:
+		currentSpeed -= 1
 		
-	if not is_on_floor():
-		velocity.y -= 0.5
-	velocity = velocity.normalized() * currentSpeed
-	move_and_slide(velocity)
+	if currentSpeed < 0:
+		currentSpeed = 0
+		
+	# Did we just stop pressing down a key?
+	if not direction and currentVel:
+		if currentSpeed == 0:
+			currentVel = Vector3(0, 0, 0)
+		else:
+			currentVel = currentVel.normalized() * currentSpeed
+	else:
+		currentVel = direction.normalized() * currentSpeed
+			
+	print(str(currentSpeed) +  " " + str(direction))
+	move_and_slide(currentVel)
 
 	
 # Called when the node enters the scene tree for the first time.
