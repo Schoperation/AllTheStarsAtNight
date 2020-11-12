@@ -1,10 +1,15 @@
 extends StaticBody
 
 var id = 0
-var treeScene = preload("res://environment/Tree.tscn")
-var trailScene = preload("res://environment/Trail.tscn")
 var trailChunk = false
 var structureChunk = false
+
+# preloads
+var treeScene = preload("res://environment/Tree.tscn")
+var trailScene = preload("res://environment/Trail.tscn")
+var rockScene = preload("res://environment/Rock.tscn")
+
+
 
 # ID handling... spawn chunk is id 0
 func setID(id):
@@ -104,4 +109,23 @@ func addStruct():
 	
 	# Choose a structure
 	var pick = round(rand_range(1, 1))
-	pass
+	
+	# 1 = rocks
+	if pick == 1:
+		addRocks()
+	else:
+		addRocks()
+
+
+func addRocks():
+	var num = round(rand_range(5, 10))
+	
+	for i in range(num):
+		var x = rand_range(-1, 1)
+		var z = rand_range(-1, 1)
+		var rock = rockScene.instance()
+		rock.translate(Vector3(x, 20, z))
+		rock.scale = Vector3(0.03, 10, 0.1)
+		add_child(rock)
+		
+	

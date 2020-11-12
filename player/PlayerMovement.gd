@@ -34,11 +34,9 @@ func _physics_process(delta):
 			currentVel = currentVel.normalized() * currentSpeed
 	else:
 		currentVel = direction.normalized() * currentSpeed
-			
-	print(str(currentSpeed) +  " " + str(direction))
 	move_and_slide(currentVel)
 
-	
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+# When we enter the game end body
+func _on_GameEnd_body_entered(body):
+	if body == self:
+		get_tree().reload_current_scene()

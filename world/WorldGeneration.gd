@@ -30,6 +30,9 @@ func genPath(length):
 		createNewChunk(0, currentZ)
 		createNewChunk(100, currentZ)
 		currentZ += 100
+		
+	# Move the GameEnd field
+	$GameEnd.translate(Vector3(0, 0, currentZ - 100))
 	
 func createNewChunk(x, z):
 	#var scene = load("res://world/Chunk.tscn")

@@ -1,28 +1,25 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/Chunk.tscn" type="PackedScene" id=2]
 [ext_resource path="res://world/SunCycle.gd" type="Script" id=3]
 [ext_resource path="res://environment/Tree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://world/WorldGeneration.gd" type="Script" id=5]
+[ext_resource path="res://environment/Rock.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Environment" id=1]
 ambient_light_color = Color( 0.529412, 0.529412, 0.529412, 1 )
 ambient_light_energy = 1.18
 
-[sub_resource type="PhysicsMaterial" id=2]
-bounce = 5.0
-
-[sub_resource type="BoxShape" id=3]
-
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 25.361, 9.20337, 5.19189 )
 
 [node name="Root" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0530567, 0.0858297, -0.00718069 )
 script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19714, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35781, 0 )
 
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.364714, 0.93112, 0, -0.93112, 0.364714, 0.340947, 20.4014, 10.6674 )
@@ -34,22 +31,22 @@ transform = Transform( 0.999126, -0.0326857, 0.0260418, 0.00080103, 0.638, 0.770
 light_energy = 1.35
 light_indirect_energy = 1.17
 shadow_enabled = true
+shadow_bias = 0.0
 directional_shadow_normal_bias = 1.49
 script = ExtResource( 3 )
 
 [node name="OriginChunk" parent="." instance=ExtResource( 2 )]
 
-[node name="Cube" type="StaticBody" parent="OriginChunk"]
-transform = Transform( 0.0360172, 0.0150003, 0.012228, 6.92414, -4.75698, -23.8994, -0.0119078, 0.0343066, -0.0186022, 0.0299526, 17.6615, -0.116758 )
-physics_material_override = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="OriginChunk/Cube"]
-transform = Transform( 1.00413, -0.00283445, -0.0142409, -0.0030973, 1.00213, 0.0106905, -0.00835305, 0.00573877, 1.02883, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="OriginChunk/Cube"]
-mesh = SubResource( 4 )
-material/0 = null
-
 [node name="Tree" parent="OriginChunk" instance=ExtResource( 4 )]
 transform = Transform( 0.02, 0, 0, 0, 10, 0, 0, 0, 0.02, -0.21807, 23.9059, -0.421788 )
+
+[node name="GameEnd" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64525, 3.21212, 23.5519 )
+
+[node name="CollisionShape" type="CollisionShape" parent="GameEnd"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.37148, 14.2409 )
+shape = SubResource( 5 )
+
+[node name="Rock" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35518, 2, 0 )
+[connection signal="body_entered" from="GameEnd" to="Player" method="_on_GameEnd_body_entered"]
