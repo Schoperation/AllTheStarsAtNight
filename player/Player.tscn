@@ -4,7 +4,7 @@
 [ext_resource path="res://player/PlayerMovement.gd" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 1.07322, 2.76827, 1 )
+extents = Vector3( 1.07322, 2.76827, 0.689479 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -19,6 +19,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39059, 0 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.182818 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
