@@ -38,7 +38,10 @@ script = ExtResource( 3 )
 [node name="OriginChunk" parent="." instance=ExtResource( 2 )]
 
 [node name="Tree" parent="OriginChunk" instance=ExtResource( 4 )]
-transform = Transform( 0.02, 0, 0, 0, 10, 0, 0, 0, 0.02, -0.21807, 23.9059, -0.421788 )
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -9.16976, 2, -18.088 )
+
+[node name="Rock" parent="OriginChunk" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35518, 2, -4.77768e-07 )
 
 [node name="GameEnd" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64525, 3.21212, 23.5519 )
@@ -46,7 +49,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64525, 3.21212, 23.5519 )
 [node name="CollisionShape" type="CollisionShape" parent="GameEnd"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.37148, 14.2409 )
 shape = SubResource( 2 )
-
-[node name="Rock" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35518, 2, 0 )
 [connection signal="body_entered" from="GameEnd" to="Player" method="_on_GameEnd_body_entered"]

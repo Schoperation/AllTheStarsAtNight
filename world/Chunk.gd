@@ -9,8 +9,6 @@ var treeScene = preload("res://environment/Tree.tscn")
 var trailScene = preload("res://environment/Trail.tscn")
 var rockScene = preload("res://environment/Rock.tscn")
 
-
-
 # ID handling... spawn chunk is id 0
 func setID(id):
 	self.id = id
@@ -46,63 +44,62 @@ func plantTrees(thick):
 	# ...unless this was planted by the US Forest Service... 
 	var numRows = 0
 	var numCols = 0
-	var OFFSET = 6
+	var OFFSET = 1.2
 	numRows = round(rand_range(4, 9))
 	numCols = round(rand_range(4, 9))
 	
 	# Generate a bunch of coordinates. The chunk is 100x100 units, and the origin is local to the middle of the chunk.
-	# Thus we can plant a tree from -50 to 50, in relation to the chunk.
+	# Thus we can plant a tree from -10 to 10, in relation to the chunk.
 	var coords = []
-	var currentX = -50
-	var currentZ = -50
-	var TRAIL_SIZE = rand_range(12, 16)
+	var currentX = -10
+	var currentZ = -10
+	var TRAIL_SIZE = rand_range(4, 6)
 	
 	for i in range(numRows):
 		for j in range(numCols):
-			currentZ += (100 / numCols)
+			currentZ += (20 / numCols)
 			# Leave room in the middle for a trail, if applicable
 			if not thick and (currentX < (-1 * TRAIL_SIZE) or currentX > TRAIL_SIZE):
 				coords.append([currentX, currentZ])
 			elif thick:
 				coords.append([currentX, currentZ])
-		currentX += (100 / numRows)
-		currentZ = -50
+		currentX += (20 / numRows)
+		currentZ = -10
 	
 	# Now apply a random offset to each coordinate pair
 	for coord in coords:
 		coord[0] += rand_range(-1 * OFFSET, OFFSET)
 		coord[1] += rand_range(-1 * OFFSET, OFFSET)
 		
-		coord[0] = clamp(coord[0], -50, 50)
-		coord[1] = clamp(coord[1], -50, 50)
+		coord[0] = clamp(coord[0], -10, 10)
+		coord[1] = clamp(coord[1], -10, 10)
 	
 	# Plant trees
 	for n in range(coords.size()):
 		var tree = treeScene.instance()
-		tree.translate(Vector3(coords[n][0], 1, coords[n][1]))
+		tree.translate(Vector3(coords[n][0], 0, coords[n][1]))
 		add_child(tree)
 		
 # Add a trail, if applicable
 func addTrail():
 	# Unlike the trees, we can just directly plop down a trail without creating a 2d array of coords.
-	var currentX = -0.3
-	var currentZ = -1
-	for i in range(10):
-		var amount = round(rand_range(3, 5))
+	var currentX = -10
+	var currentZ = -11
+	var amount = round(rand_range(5, 9))
+	for i in range(13):
 		for j in range(amount):
 			var trailPiece = trailScene.instance()
 			trailPiece.translate(Vector3(currentX, 1, currentZ))
-			trailPiece.scale = Vector3(0.1, 1, 0.1)
 			
 			# Random rotation
 			var rotation = round(rand_range(1, 4))
 			trailPiece.rotate_y(rotation * (PI/2))
 			
 			add_child(trailPiece)
-			currentX += 0.2
-		amount = round(rand_range(3, 5))
-		currentZ += 0.2
-		currentX = rand_range(-0.4, -0.1)
+			currentX += 2
+		amount = round(rand_range(6, 8))
+		currentZ += 2
+		currentX = rand_range(-6, -4)
 		
 # Generates structures
 func addStruct():
@@ -121,11 +118,8 @@ func addRocks():
 	var num = round(rand_range(5, 10))
 	
 	for i in range(num):
-		var x = rand_range(-1, 1)
-		var z = rand_range(-1, 1)
+		var x = rand_range(-20, 20)
+		var z = rand_range(-20, 20)
 		var rock = rockScene.instance()
-		rock.translate(Vector3(x, 20, z))
-		rock.scale = Vector3(0.03, 10, 0.1)
+		rock.translate(Vector3(x, 0, z))
 		add_child(rock)
-		
-	

@@ -4,6 +4,10 @@ export var maxSpeed = 15
 var currentSpeed = 0
 var currentVel = Vector3()
 
+func _ready():
+	# Prevent their y from moving
+	move_lock_y = true
+
 func _physics_process(delta):
 	# Determine direction
 	var direction = Vector3()
@@ -35,6 +39,10 @@ func _physics_process(delta):
 	else:
 		currentVel = direction.normalized() * currentSpeed
 	move_and_slide(currentVel)
+	
+	# Make sure y doesn't change
+	if not is_on_floor():
+		translate(Vector3(0, -0.3, 0))
 
 # When we enter the game end body
 func _on_GameEnd_body_entered(body):
