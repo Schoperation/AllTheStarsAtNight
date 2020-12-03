@@ -22,7 +22,7 @@ script = ExtResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35781, 0 )
 
 [node name="Camera" type="Camera" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 0.364714, 0.93112, 0, -0.93112, 0.364714, 0.340947, 20.4014, 10.6674 )
+transform = Transform( 1, 0, 0, 0, 0.364714, 0.93112, 0, -0.93112, 0.364714, 0.340949, 24.2156, 11.8481 )
 environment = SubResource( 1 )
 current = true
 
