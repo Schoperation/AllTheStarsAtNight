@@ -1,21 +1,24 @@
-extends Node
+extends Label
 
 """
 Functions that help the player examine the whereabouts of their world.
 """
-var mouseText = ""
+signal examineMouseEnter(object, objectName)
+signal examineMouseExit(object, objectName)
 var mouseObj = null
 
 func _process(delta):
+	# Set text to mousecoords
 	var mouseCoords = get_viewport().get_mouse_position()
+	get_parent().set_position(mouseCoords)
 
 func onMouseEnter(object, objectName):
 	
 	# What if there's an overlap?
 	if mouseObj != null:
-		onMouseExit(mouseObj, mouseText)
+		onMouseExit()
 	
-	mouseText = "Examine " + objectName
+	text = "Examine " + objectName
 	mouseObj = object
 	
 	# Highlight the object
@@ -23,8 +26,8 @@ func onMouseEnter(object, objectName):
 		mouseObj.get_node("AnimatedSprite3D").opacity = 0.70
 		
 		
-func onMouseExit(object, objectName):
-	mouseText = ""
+func onMouseExit():
+	text = ""
 	
 	# Unhighlight the object
 	if mouseObj.has_node("AnimatedSprite3D"):

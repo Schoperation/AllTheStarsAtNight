@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/cmu-typewriter/Typewriter.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/Examine.gd" type="Script" id=2]
+[ext_resource path="res://ui/UI_Main.gd" type="Script" id=3]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Version" type="RichTextLabel" parent="."]
+margin_right = 334.0
+margin_bottom = 48.0
+mouse_default_cursor_shape = 16
+custom_fonts/normal_font = ExtResource( 1 )
+text = "Walk in the Woods v0.0.0.0.0.0.0.1"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MouseTextContainer" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+mouse_filter = 1
+
+[node name="MouseText" type="Label" parent="MouseTextContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -90.0
+margin_top = -82.5417
+margin_right = 90.0
+margin_bottom = 17.4583
+size_flags_horizontal = 4
+text = "Examine"
+align = 1
+valign = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="examineMouseEnter" from="MouseTextContainer/MouseText" to="MouseTextContainer/MouseText" method="onMouseEnter"]
+[connection signal="examineMouseExit" from="MouseTextContainer/MouseText" to="MouseTextContainer/MouseText" method="onMouseExit"]

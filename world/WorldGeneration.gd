@@ -7,12 +7,12 @@ func _ready():
 	randomize()
 	# Every 100 units, plop a new chunk
 	# Place the ones surrounding the spawn chunk
-	#createNewChunk(-100, 0)
-	#createNewChunk(100, 0)
+	createNewChunk(-100, 0)
+	createNewChunk(100, 0)
 	
-	#createNewChunk(-100, -100)
-	#createNewChunk(0, -100)
-	#createNewChunk(100, -100)
+	createNewChunk(-100, -100)
+	createNewChunk(0, -100)
+	createNewChunk(100, -100)
 	
 	genPath(30)
 	

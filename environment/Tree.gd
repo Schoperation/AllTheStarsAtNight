@@ -1,8 +1,9 @@
 extends StaticBody
 
-const Examine = preload("res://environment/Examine.gd")
-var examine = Examine.new()
 var mouseName = "Tree"
+
+signal examineMouseEnter(object, objectName)
+signal examineMouseExit(object, objectName)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,10 +19,15 @@ func _ready():
 		mouseName = "Pine Tree"
 	else:
 		mouseName = "WHAT"
+		
+	# Connect signals
+	#connect("examineMouseEnter", get_tree().get_.get_node())
 	
 func _on_Tree_mouse_entered():
-	examine.onMouseEnter(self, mouseName)
+	emit_signal("../../UI/MouseTextContainer/MouseText/examineMouseEnter", self, mouseName)
+	#examine.onMouseEnter(self, mouseName)
 
 
 func _on_Tree_mouse_exited():
-	examine.onMouseExit(self, mouseName)
+	emit_signal("../../UI/MouseTextContainer/MouseText/examineMouseExit", self, mouseName)
+	#examine.onMouseExit(self, mouseName)
