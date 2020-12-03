@@ -3,7 +3,7 @@ extends StaticBody
 var mouseName = "Tree"
 
 signal examineMouseEnter(object, objectName)
-signal examineMouseExit(object, objectName)
+signal examineMouseExit()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,13 +21,12 @@ func _ready():
 		mouseName = "WHAT"
 		
 	# Connect signals
-	#connect("examineMouseEnter", get_tree().get_.get_node())
+	connect("examineMouseEnter", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseEnter")
+	connect("examineMouseExit", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseExit")
 	
 func _on_Tree_mouse_entered():
-	emit_signal("../../UI/MouseTextContainer/MouseText/examineMouseEnter", self, mouseName)
-	#examine.onMouseEnter(self, mouseName)
+	emit_signal("examineMouseEnter", self, mouseName)
 
 
 func _on_Tree_mouse_exited():
-	emit_signal("../../UI/MouseTextContainer/MouseText/examineMouseExit", self, mouseName)
-	#examine.onMouseExit(self, mouseName)
+	emit_signal("examineMouseExit")
