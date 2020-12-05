@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/Chunk.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://world/WorldGeneration.gd" type="Script" id=5]
 [ext_resource path="res://environment/Rock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/UI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/Zoom.gd" type="Script" id=8]
 
 [sub_resource type="Environment" id=1]
 ambient_light_color = Color( 0.529412, 0.529412, 0.529412, 1 )
@@ -28,6 +29,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35781, 0 )
 transform = Transform( 1, 0, 0, 0, 0.364714, 0.93112, 0, -0.93112, 0.364714, 0.340949, 23.0891, 11.3047 )
 environment = SubResource( 1 )
 current = true
+script = ExtResource( 8 )
 
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 0.999126, -0.0326857, 0.0260418, 0.00080103, 0.638, 0.770036, -0.0417838, -0.769343, 0.637469, -0.668901, 23.358, 1.22445 )
