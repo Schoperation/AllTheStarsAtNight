@@ -89,7 +89,7 @@ func addTrail():
 	for i in range(13):
 		for j in range(amount):
 			var trailPiece = trailScene.instance()
-			trailPiece.translate(Vector3(currentX, 1, currentZ))
+			trailPiece.translate(Vector3(currentX, 1.05, currentZ))
 			
 			# Random rotation
 			var rotation = round(rand_range(1, 4))
