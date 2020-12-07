@@ -10,6 +10,7 @@ var defaultPos
 
 func _ready():
 	defaultPos = self.transform.origin
+	changeCameraPos()
 
 func _input(event):
 	if Input.is_action_just_released("zoom_in"):
@@ -27,7 +28,7 @@ func changeCameraPos():
 	# Follow a parabola
 	var parabolaZ = 0.5 * (t + 1.5)
 	var parabolaY = 0.5 * t * t + 0.25
-	self.transform.origin.z = defaultPos.z * parabolaZ
+	self.transform.origin.z = defaultPos.z * parabolaZ + 1
 	self.transform.origin.y = defaultPos.y * parabolaY
 	
 	# Set angle

@@ -10,7 +10,7 @@ margin_right = 334.0
 margin_bottom = 48.0
 mouse_default_cursor_shape = 16
 custom_fonts/normal_font = ExtResource( 1 )
-text = "Walk in the Woods v0.0.0.0.0.0.0.1"
+text = "Walk in the Woods v0.1.0"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false

@@ -35,7 +35,7 @@ func populate():
 	#todo add more like trails, rocks, and then... random structures woooahhh
 	if structureChunk:
 		addStruct()
-		print(id)
+		#print(id)
 		
 # Plants trees on the chunk
 func plantTrees(thick):
