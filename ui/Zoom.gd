@@ -2,6 +2,8 @@ extends Camera
 
 """
 Script for zooming in and out of the map 
+
+Also for changing the skybox color
 """
 
 # Keep track of where we are
@@ -35,3 +37,7 @@ func changeCameraPos():
 	# theta = arctan(z/y)
 	var theta = atan(parabolaY/(parabolaZ - 0.1)) * -1.1
 	self.rotation.x = theta
+	
+# Change skybox colors
+func changeSkyColor():
+	pass
