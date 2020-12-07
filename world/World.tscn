@@ -80,5 +80,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64525, 3.21212, 23.5519 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.37148, 14.2409 )
 shape = SubResource( 2 )
 [connection signal="timeout" from="Sun/DayCycle" to="Sun" method="_on_DayCycle_timeout"]
-[connection signal="mouse_entered" from="OriginChunk/Tree" to="UI" method="_on_Tree_mouse_entered"]
 [connection signal="body_entered" from="GameEnd" to="Player" method="_on_GameEnd_body_entered"]
