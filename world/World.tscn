@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/Chunk.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://environment/Rock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/UI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/Zoom.gd" type="Script" id=8]
+[ext_resource path="res://follower/Follower.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -44,6 +45,15 @@ current = true
 far = 360.7
 script = ExtResource( 8 )
 
+[node name="Barfite" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1.21577, 0, 0, 0, 1, -0.00697756, 2.56374, -5.71418 )
+input_capture_on_drag = true
+
+[node name="Vigil" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.952302, 0, 0, 0, 0.878157, 4.15113, 2.2383, -5.86996 )
+input_capture_on_drag = true
+isBarfite = false
+
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 0.999126, -0.0326857, 0.0260418, 0.00080103, 0.638, 0.770036, -0.0417838, -0.769343, 0.637469, -0.668901, 23.358, 1.22445 )
 light_energy = 1.52
@@ -54,7 +64,6 @@ script = ExtResource( 3 )
 
 [node name="DayCycle" type="Timer" parent="Sun"]
 wait_time = 0.05
-autostart = true
 
 [node name="OriginChunk" parent="." instance=ExtResource( 2 )]
 
