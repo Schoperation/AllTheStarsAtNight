@@ -118,3 +118,6 @@ func createNewChunk(x, z):
 	
 	# Populate with stuff
 	newChunk.populate()
+	
+	# does nothing
+	#newChunk.visible = false

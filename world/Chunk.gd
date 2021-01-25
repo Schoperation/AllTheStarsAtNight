@@ -1,7 +1,7 @@
 extends StaticBody
 
 var id = 0
-var trailChunk = false
+#var trailChunk = false
 var structureChunk = false
 
 # preloads
@@ -17,21 +17,27 @@ func getID() -> int:
 	return self.id
 	
 func _ready():
-	if transform.origin.x == 0 and transform.origin.z > 0:
-		trailChunk = true
+	#if transform.origin.x == 0 and transform.origin.z > 0:
+	#	trailChunk = true
 		
 	# Determine if we should spawn a structure here
 	var die = round(rand_range(0, 10))
-	if die == 7 and trailChunk:
+	if die == 7:
 		structureChunk = true
 	
 # Populates the chunk with objects like trees
 func populate():
-	if not structureChunk:
-		plantTrees(not trailChunk)
+	# temp random gen code
+	var die = round(rand_range(0, 1))
+	var thick = false
+	if die == 1:
+		thick = true
 	
-	if trailChunk:
-		addTrail()
+	if not structureChunk:
+		plantTrees(thick)
+	
+	#if trailChunk:
+	#	addTrail()
 	#todo add more like trails, rocks, and then... random structures woooahhh
 	if structureChunk:
 		addStruct()
@@ -59,7 +65,8 @@ func plantTrees(thick):
 		for j in range(numCols):
 			currentZ += (20 / numCols)
 			# Leave room in the middle for a trail, if applicable
-			if not thick and (currentX < (-1 * TRAIL_SIZE) or currentX > TRAIL_SIZE):
+			#if not thick and (currentX < (-1 * TRAIL_SIZE) or currentX > TRAIL_SIZE):
+			if not thick:
 				coords.append([currentX, currentZ])
 			elif thick:
 				coords.append([currentX, currentZ])
@@ -115,7 +122,11 @@ func addStruct():
 
 
 func addRocks():
+	# How many rocks?
 	var num = round(rand_range(5, 10))
+	
+	# Eh, looks cool underneath
+	addTrail()
 	
 	for i in range(num):
 		var x = rand_range(-20, 20)
