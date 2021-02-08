@@ -1,16 +1,30 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://fonts/cmu-typewriter/Typewriter.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/Examine.gd" type="Script" id=2]
+[ext_resource path="res://ui/Version.gd" type="Script" id=3]
 
 [node name="UI" type="CanvasLayer"]
 
 [node name="Version" type="RichTextLabel" parent="."]
 margin_right = 334.0
-margin_bottom = 48.0
+margin_bottom = 96.0
 mouse_default_cursor_shape = 16
 custom_fonts/normal_font = ExtResource( 1 )
-text = "Walk in the Woods v0.2.1"
+text = "Error setting text!"
+scroll_active = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" type="RichTextLabel" parent="Version"]
+margin_left = 1.0
+margin_top = 31.0
+margin_right = 213.0
+margin_bottom = 75.0
+custom_fonts/normal_font = ExtResource( 1 )
+text = "Error setting FPS!"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
