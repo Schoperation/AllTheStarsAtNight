@@ -3,6 +3,7 @@ extends KinematicBody
 export var maxSpeed = 15
 var currentSpeed = 0
 var currentVel = Vector3()
+const GROUND_LEVEL = 2.35
 
 func _ready():
 	# Prevent their y from moving
@@ -41,8 +42,10 @@ func _physics_process(delta):
 	move_and_slide(currentVel)
 	
 	# Make sure y doesn't change
-	if not is_on_floor():
-		translate(Vector3(0, -0.3, 0))
+	if transform.origin.y > GROUND_LEVEL:
+		translate(Vector3(0, -0.2, 0))
+	elif transform.origin.y < GROUND_LEVEL:
+		transform.origin = Vector3(transform.origin.x, GROUND_LEVEL, transform.origin.z)
 
 # When we enter the game end body
 func _on_GameEnd_body_entered(body):
