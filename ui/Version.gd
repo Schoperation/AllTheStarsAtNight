@@ -3,7 +3,7 @@ extends RichTextLabel
 # Version
 var gameName = "All the Stars at Night"
 var desc = "Explore an in-depth forest with an in-depth duo"
-var version = "0.2.1"
+var version = "0.3.0 pre"
 
 func _ready():
 	# Change version

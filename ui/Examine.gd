@@ -11,7 +11,8 @@ var quotes = {
 	"Oak Tree": "Pretty normal tree.",
 	"Pine Tree": "Even more normal than the oak tree.",
 	"Smooth Pine Tree": "The art team had a hiccup.",
-	"Rock": "What are you looking at?"
+	"Rock": "What are you looking at?",
+	"Star": "Very shiny. I wonder if I can pick it up?"
 }
 
 func _ready():
