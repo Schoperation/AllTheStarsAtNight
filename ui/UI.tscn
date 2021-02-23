@@ -9,6 +9,7 @@
 [node name="Version" type="RichTextLabel" parent="."]
 margin_right = 388.0
 margin_bottom = 58.0
+mouse_filter = 2
 mouse_default_cursor_shape = 16
 custom_fonts/normal_font = ExtResource( 1 )
 text = "Error setting text!"
@@ -23,6 +24,7 @@ margin_left = 1.0
 margin_top = 31.0
 margin_right = 213.0
 margin_bottom = 75.0
+mouse_filter = 2
 custom_fonts/normal_font = ExtResource( 1 )
 text = "Error setting FPS!"
 scroll_active = false
