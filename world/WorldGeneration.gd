@@ -4,7 +4,7 @@ var nextChunkId = 1
 var scene = preload("res://world/Chunk.tscn")
 var chunkArray = []
 var rng = RandomNumberGenerator.new()
-export var numStars = 1
+export var numStars = 7
 
 # Used in genWorld(size) to determine where to spawn chunks for a particular iteration
 enum GenDirec {LEFT = 0, DOWN = 1, RIGHT = 2, UP = 3}
@@ -148,8 +148,6 @@ func addStars(num):
 		# Delete
 		for k in range(markedForDeletion.size()):
 			possibleIds.remove(markedForDeletion[k])
-			
-	print(ids)
 	
 	# Okay! Let's spawn them now.
 	# Eventually they will fall out of the sky.
@@ -157,8 +155,6 @@ func addStars(num):
 	var starObj = load("res://environment/Star.tscn")
 	for j in range(ids.size()):
 		var chunk = getChunkById(ids[j])
-		#var x = rand_range(chunk.transform.origin.x - 50, chunk.transform.origin.x + 50)
-		#var z = rand_range(chunk.transform.origin.z - 50, chunk.transform.origin.z + 50)
 		var x = rand_range(-10, 10) # in relation to the chunk
 		var z = rand_range(-10, 10)
 		
@@ -166,6 +162,3 @@ func addStars(num):
 		chunk.add_child(newStar)
 		var pos = Vector3(x, 2.7, z)
 		newStar.transform.origin = pos
-		
-		
-		

@@ -11,15 +11,15 @@ func _ready():
 	var root = get_node("../../")
 	numStars = root.numStars
 	numLeft = numStars
-	self.text = "Stars Left: " + str(numStars)
+	self.bbcode_text = "[right]Stars Left: " + str(numStars) + "[/right]"
 
 func onStarPickupText():
 	numLeft -= 1
-	self.text = "Stars Left: " + str(numLeft)
+	self.bbcode_text = "[right]Stars Left: " + str(numLeft) + "[/right]"
 	
 	# Finish?
 	if numLeft == 0:
-		self.text = "You got them all!"
+		self.bbcode_text = "[right]You got them all![/right]"
 		$RestartTimer.start()
 		
 func _on_RestartTimer_timeout():

@@ -52,8 +52,8 @@ func plantTrees(thick):
 	var numRows = 0
 	var numCols = 0
 	var OFFSET = 1.2
-	numRows = round(rand_range(4, 9))
-	numCols = round(rand_range(4, 9))
+	numRows = round(rand_range(3, 6))
+	numCols = round(rand_range(3, 6))
 	
 	# Generate a bunch of coordinates. The chunk is 100x100 units, and the origin is local to the middle of the chunk.
 	# Thus we can plant a tree from -10 to 10, in relation to the chunk.

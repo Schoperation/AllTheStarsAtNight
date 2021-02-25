@@ -29,7 +29,6 @@ auto_exposure_speed = 13.16
 dof_blur_far_enabled = true
 dof_blur_far_distance = 94.35
 dof_blur_far_transition = 22.33
-dof_blur_far_quality = 2
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 25.361, 9.20337, 5.19189 )
@@ -37,6 +36,7 @@ extents = Vector3( 25.361, 9.20337, 5.19189 )
 [node name="Root" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0530567, 0.0858297, -0.00718069 )
 script = ExtResource( 5 )
+numStars = 10
 
 [node name="UI" parent="." instance=ExtResource( 7 )]
 
