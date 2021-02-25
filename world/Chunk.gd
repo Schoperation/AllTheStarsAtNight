@@ -1,6 +1,7 @@
 extends StaticBody
 
-var id = 0
+# ID of the chunk
+export var id = 0
 #var trailChunk = false
 var structureChunk = false
 
