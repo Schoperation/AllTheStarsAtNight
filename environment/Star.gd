@@ -22,5 +22,6 @@ func _on_Star_mouse_exited():
 func _on_Star_body_entered(body):
 	if body.name == "Player":
 		emit_signal("onStarPickup")
+		emit_signal("examineMouseExit")
 		queue_free()
-		
+

@@ -15,14 +15,14 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "pine_2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "pine",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "pine_2",
 "speed": 5.0
 } ]
 
@@ -36,7 +36,7 @@ transform = Transform( 1, 0, 0, 0, 0.900698, 0.303484, 0, -0.434445, 0.629187, 0
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.900698, 0.434446, 0, -0.434446, 0.900698, 0, 2, 0 )
+transform = Transform( 1, 0, 0, 0, 0.900698, 0.434445, 0, -0.434445, 0.900698, 0, 2, 0 )
 shaded = true
 alpha_cut = 2
 frames = SubResource( 2 )

@@ -49,11 +49,10 @@ func onMouseExit():
 	mouseObjName = ""
 	
 	# Unhighlight the object
-	if mouseObj.has_node("AnimatedSprite3D"):
+	if mouseObj != null and mouseObj.has_node("AnimatedSprite3D"):
 		mouseObj.get_node("AnimatedSprite3D").opacity = 1.00
 		
 	mouseObj = null
-
 
 # Hide the examine text
 func _on_DisplayTimer_timeout():
