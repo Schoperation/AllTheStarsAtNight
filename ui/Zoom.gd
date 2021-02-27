@@ -25,6 +25,10 @@ func _input(event):
 		if t > 2.0:
 			t = 2.0
 		changeCameraPos()
+	elif Input.is_action_pressed("rotate_left"):
+		pass
+	elif Input.is_action_pressed("rotate_right"):
+		pass
 		
 func changeCameraPos():
 	# Follow a parabola
