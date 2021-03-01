@@ -51,7 +51,7 @@ func plantTrees(thick):
 	# ...unless this was planted by the US Forest Service... 
 	var numRows = 0
 	var numCols = 0
-	var OFFSET = 1.2
+	var OFFSET = 2.0
 	numRows = round(rand_range(3, 6))
 	numCols = round(rand_range(3, 6))
 	
