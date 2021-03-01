@@ -10,6 +10,9 @@ func _ready():
 	connect("examineMouseExit", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseExit")
 	connect("onStarPickup", get_node("../../UI/Stars"), "onStarPickupText")
 	
+	# Add to environment objects group
+	add_to_group("Environment_Objs")
+	
 
 func _on_Star_mouse_entered():
 	emit_signal("examineMouseEnter", self, "Star")

@@ -11,6 +11,9 @@ var otherFollower
 func _ready():
 	player = get_parent().get_node("Player")
 	otherFollower = get_parent().get_node("Vigil") if isBarfite else get_parent().get_node("Barfite")
+	
+	# Add to followers group
+	add_to_group("Followers")
 
 func _process(delta):
 	pathfind()

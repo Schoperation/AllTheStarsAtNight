@@ -18,7 +18,7 @@ func _ready():
 	chunkArray.append($OriginChunk)
 	
 	# Gen
-	genWorld(5)
+	genWorld(10)
 	addStars(numStars)
 	
 func genWorld(size):

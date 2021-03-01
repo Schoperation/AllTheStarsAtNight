@@ -24,9 +24,15 @@ func _ready():
 	connect("examineMouseEnter", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseEnter")
 	connect("examineMouseExit", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseExit")
 	
+	# Add to environment objects group
+	add_to_group("Environment_Objs")
+	
 func _on_Tree_mouse_entered():
 	emit_signal("examineMouseEnter", self, mouseName)
 
 
 func _on_Tree_mouse_exited():
 	emit_signal("examineMouseExit")
+	
+func onAngleChanged(angle):
+	$AnimatedSprite3D.rotation = Vector3($AnimatedSprite3D.rotation.x, angle, 0)
