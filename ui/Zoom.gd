@@ -6,8 +6,6 @@ Script for zooming in and out of the map
 Also for changing the skybox color
 """
 
-signal onAngleChanged(angle)
-
 # Keep track of where we are
 var t = 1 # zoom
 var r = 0 # rotate
@@ -28,22 +26,38 @@ func _input(event):
 		if t > 2.0:
 			t = 2.0
 		changeCameraPos()
+
+# For smoother rotation
+func _process(delta):
+	# To "snap" back from rotated view
+	if r > 0 and not Input.is_action_pressed("rotate_right"):
+		r -= 0.5 * (1 - r/10.5)
+		changeCameraPos()
+	elif r < 0 and not Input.is_action_pressed("rotate_left"):
+		r += 0.5 * (1 + r/10.5)
+		changeCameraPos()
+	# Actual rotation
 	elif Input.is_action_pressed("rotate_left"):
-		r -= 1
+		r -= 0.5 * (1 + r/10.5) # Slow down as we approach limit
 		if r < -10:
 			r = -10
 		changeCameraPos()
 	elif Input.is_action_pressed("rotate_right"):
-		r += 1
+		r += 0.5 * (1 - r/10.5)
 		if r > 10:
 			r = 10
+		changeCameraPos()
+		
+	# Deadzone
+	if r > -0.3 and r < 0.3:
+		r = 0
 		changeCameraPos()
 			
 func changeCameraPos():
 	# Follow a parabola
 	var parabolaZ = 0.5 * (t + 1.5)
 	var parabolaY = 0.5 * t * t + 0.25
-	self.transform.origin.z = defaultPos.z * parabolaZ + 1
+	self.transform.origin.z = defaultPos.z * parabolaZ - abs(0.5 * r) + 1
 	self.transform.origin.y = defaultPos.y * parabolaY
 	self.transform.origin.x = r
 	
@@ -56,7 +70,7 @@ func changeCameraPos():
 	changeAngles()
 
 func changeAngles():
-	var angle = sin(self.transform.origin.x / self.global_transform.origin.distance_to(get_parent().transform.origin))
+	var angle = atan(self.transform.origin.x / abs(self.global_transform.origin.z - get_parent().transform.origin.z))
 	
 	# Player
 	get_parent().get_node("AnimatedSprite3D").rotation = Vector3(get_parent().get_node("AnimatedSprite3D").rotation.x, angle, 0)
