@@ -40,9 +40,10 @@ radius = 0.1
 height = 0.2
 
 [node name="Fireflies" type="Particles"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.96651, 0 )
-amount = 32
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.03125, 0 )
+amount = 30
 lifetime = 5.0
 randomness = 0.54
+visibility_aabb = AABB( -58.8721, -22.36, -49.8177, 133.687, 32.5508, 109.835 )
 process_material = SubResource( 1 )
 draw_pass_1 = SubResource( 3 )

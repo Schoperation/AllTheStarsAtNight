@@ -2,13 +2,14 @@ extends StaticBody
 
 # ID of the chunk
 export var id = 0
-#var trailChunk = false
 var structureChunk = false
+var hasFireflies = false
 
 # preloads
 var treeScene = preload("res://environment/Tree.tscn")
 var trailScene = preload("res://environment/Trail.tscn")
 var rockScene = preload("res://environment/Rock.tscn")
+var firefliesScene = preload("res://environment/Fireflies.tscn")
 
 # ID handling... spawn chunk is id 0
 func setID(id):
@@ -18,31 +19,31 @@ func getID() -> int:
 	return self.id
 	
 func _ready():
-	#if transform.origin.x == 0 and transform.origin.z > 0:
-	#	trailChunk = true
-		
 	# Determine if we should spawn a structure here
 	var die = round(rand_range(0, 10))
 	if die == 7:
 		structureChunk = true
+		
+	# Determine if we should have fireflies
+	die = round(rand_range(0, 4))
+	if die == 1:
+		hasFireflies = true
 	
 # Populates the chunk with objects like trees
 func populate():
-	# temp random gen code
+	# Determine forest thickness (unused for now...)
 	var die = round(rand_range(0, 1))
 	var thick = false
 	if die == 1:
 		thick = true
 	
-	if not structureChunk:
-		plantTrees(thick)
-	
-	#if trailChunk:
-	#	addTrail()
-	#todo add more like trails, rocks, and then... random structures woooahhh
 	if structureChunk:
 		addStruct()
-		#print(id)
+	else:
+		plantTrees(thick)
+	
+	if hasFireflies:
+		addFireflies()
 		
 # Plants trees on the chunk
 func plantTrees(thick):
@@ -108,7 +109,14 @@ func addTrail():
 		amount = round(rand_range(6, 8))
 		currentZ += 2
 		currentX = rand_range(-6, -4)
-		
+
+# Summon some firefly particles
+func addFireflies():
+	var fireflies = firefliesScene.instance()
+	fireflies.transform.origin = Vector3(self.transform.origin.x, 3, self.transform.origin.z)
+	#fireflies.translate(Vector3(0, 10, 0))
+	add_child(fireflies)
+	
 # Generates structures
 func addStruct():
 	

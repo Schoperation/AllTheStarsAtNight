@@ -76,7 +76,7 @@ func changeAngles():
 	get_parent().get_node("AnimatedSprite3D").rotation = Vector3(get_parent().get_node("AnimatedSprite3D").rotation.x, angle, 0)
 	
 	for item in get_tree().get_nodes_in_group("Environment_Objs"):
-		item.get_node("AnimatedSprite3D").rotation = Vector3(item.get_node("AnimatedSprite3D").rotation.x, angle, 0)
+		item.get_node("AnimatedSprite3D").rotation = Vector3(item.get_node("AnimatedSprite3D").rotation.x, angle * 0.75, 0)
 
 	for item in get_tree().get_nodes_in_group("Followers"):
 		item.get_node("AnimatedSprite3D").rotation = Vector3(item.get_node("AnimatedSprite3D").rotation.x, angle, 0)
