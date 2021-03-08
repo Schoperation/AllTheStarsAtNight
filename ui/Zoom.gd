@@ -49,7 +49,7 @@ func _process(delta):
 		changeCameraPos()
 		
 	# Deadzone
-	if r > -0.3 and r < 0.3:
+	if r > -0.3 and r < 0.3 and r != 0:
 		r = 0
 		changeCameraPos()
 			
