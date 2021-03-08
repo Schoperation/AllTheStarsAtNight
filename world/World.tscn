@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/Chunk.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://ui/UI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/Zoom.gd" type="Script" id=8]
 [ext_resource path="res://follower/Follower.tscn" type="PackedScene" id=9]
+[ext_resource path="res://environment/Fireflies.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -90,5 +91,9 @@ visible = false
 [node name="CollisionShape" type="CollisionShape" parent="GameEnd"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.37148, 14.2409 )
 shape = SubResource( 2 )
+
+[node name="Fireflies" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1578, 4.48759, 1.79611 )
+use_in_baked_light = true
 [connection signal="timeout" from="Sun/DayCycle" to="Sun" method="_on_DayCycle_timeout"]
 [connection signal="body_entered" from="GameEnd" to="Player" method="_on_GameEnd_body_entered"]
