@@ -89,6 +89,7 @@ mouse_filter = 2
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "Error score"
+text = "Error score"
 scroll_active = false
 script = ExtResource( 4 )
 __meta__ = {
