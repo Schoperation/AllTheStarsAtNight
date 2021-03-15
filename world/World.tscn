@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/Chunk.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://ui/UI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/MapControls.gd" type="Script" id=8]
 [ext_resource path="res://follower/Follower.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ring/StarStone.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -79,4 +80,7 @@ transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, -9.16976, 2, -18.088 )
 
 [node name="Rock" parent="OriginChunk" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35518, 2, -4.77768e-07 )
+
+[node name="StarStone" parent="OriginChunk" instance=ExtResource( 10 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 12.8403 )
 [connection signal="timeout" from="Sun/DayCycle" to="Sun" method="_on_DayCycle_timeout"]

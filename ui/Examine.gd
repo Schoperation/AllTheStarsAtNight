@@ -12,7 +12,10 @@ var quotes = {
 	"Pine Tree": "Even more normal than the oak tree.",
 	"Smooth Pine Tree": "The art team had a hiccup.",
 	"Rock": "What are you looking at?",
-	"Star": "Very shiny. I wonder if I can pick it up?"
+	"Star": "Very shiny. I wonder if I can pick it up?",
+	"Empty Star Stone": "That's a weirdly empty stone. Maybe something goes here?",
+	"Place Star": "Let's see what happens...",
+	"Activated Star Stone": "I feel a weird energy eminating from this... thing."
 }
 
 func _ready():
@@ -35,7 +38,10 @@ func onMouseEnter(object, objectName):
 	if mouseObj != null:
 		onMouseExit()
 	
-	text = "Examine " + objectName
+	if objectName == "Place Star":
+		text = objectName
+	else:
+		text = "Examine " + objectName
 	mouseObj = object
 	mouseObjName = objectName
 	
