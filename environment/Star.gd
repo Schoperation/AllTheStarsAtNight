@@ -1,18 +1,19 @@
 extends RigidBody
 
+export var isPartOfStone = false
 signal examineMouseEnter(object, objectName)
 signal examineMouseExit()
 signal onStarPickup()
 
 func _ready():
-	# Connect signals
-	connect("examineMouseEnter", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseEnter")
-	connect("examineMouseExit", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseExit")
-	connect("onStarPickup", get_node("../../UI/Stars"), "onStarPickupText")
+	# Connect signals, if not part of a star stone, which is set via editor
+	if not isPartOfStone:
+		connect("examineMouseEnter", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseEnter")
+		connect("examineMouseExit", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseExit")
+		connect("onStarPickup", get_node("../../OriginChunk/StarRing"), "onStarPickup")
 	
 	# Add to environment objects group
 	add_to_group("Environment_Objs")
-	
 
 func _on_Star_mouse_entered():
 	emit_signal("examineMouseEnter", self, "Star")

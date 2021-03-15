@@ -34,7 +34,7 @@ shaded = true
 alpha_cut = 2
 frames = SubResource( 1 )
 animation = "activated"
-frame = 6
+frame = 3
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -48,6 +48,7 @@ light_energy = 2.0
 
 [node name="Star" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.45, 0 )
+isPartOfStone = true
 [connection signal="input_event" from="." to="." method="_on_StarStone_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_StarStone_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_StarStone_mouse_exited"]

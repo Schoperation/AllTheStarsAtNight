@@ -28,11 +28,14 @@ func _ready():
 		position = Vector3(radius * cos(polarAngle), 0, radius * sin(polarAngle))
 
 # When a star is added to one of its stones
-func addStar():
+func addStarToRing():
 	numStonesActivated += 1
 	numPlayerStars -= 1
-	print("Added star!")
 	
 	# Do we have them all????
 	if numStonesActivated == numStones:
 		get_tree().reload_current_scene()
+		
+# When a player picks up a star, called from a star instance
+func onStarPickup():
+	numPlayerStars += 1

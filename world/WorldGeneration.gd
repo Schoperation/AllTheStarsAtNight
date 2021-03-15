@@ -4,7 +4,7 @@ var nextChunkId = 1
 var scene = preload("res://world/Chunk.tscn")
 var chunkArray = []
 var rng = RandomNumberGenerator.new()
-export var numStars = 2
+export var numStars = 10
 
 # Used in genWorld(size) to determine where to spawn chunks for a particular iteration
 enum GenDirec {LEFT = 0, DOWN = 1, RIGHT = 2, UP = 3}
