@@ -13,9 +13,9 @@ var sineTime = 0
 
 func _ready():
 	# Connect signals
-	connect("examineMouseEnter", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseEnter")
-	connect("examineMouseExit", get_node("../../UI/MouseTextContainer/MouseText"), "onMouseExit")
-	connect("onStarPlace", get_node("../../UI/Stars"), "onStarPlace")
+	connect("examineMouseEnter", get_node("../../../UI/MouseTextContainer/MouseText"), "onMouseEnter")
+	connect("examineMouseExit", get_node("../../../UI/MouseTextContainer/MouseText"), "onMouseExit")
+	connect("onStarPlace", get_node("../../../UI/Stars"), "onStarPlace")
 	
 	# Add to environment objects group
 	add_to_group("Environment_Objs")
@@ -53,6 +53,9 @@ func _process(delta):
 
 func placeStar():
 	emit_signal("onStarPlace")
+	
+	# Notify parent ring
+	get_parent().addStar()
 	hasStar = true
 	$AnimatedSprite3D.animation = "activated"
 	$Star.visible = true
@@ -60,7 +63,7 @@ func placeStar():
 func _on_StarStone_mouse_entered():
 	if hasStar:
 		emit_signal("examineMouseEnter", self, "Activated Star Stone")
-	elif get_node("../../UI/Stars").numPlayerStars > 0:
+	elif get_node("../../../UI/Stars").numPlayerStars > 0:
 		emit_signal("examineMouseEnter", self, "Place Star")
 	else:
 		emit_signal("examineMouseEnter", self, "Empty Star Stone")
@@ -71,7 +74,7 @@ func _on_StarStone_mouse_exited():
 # Detect clicks
 func _on_StarStone_input_event(camera, event, click_position, click_normal, shape_idx):
 	#if event is InputEventMouseButton:
-	if event.is_action_pressed("add_star") and not hasStar and get_node("../../UI/Stars").numPlayerStars > 0:
+	if event.is_action_pressed("add_star") and not hasStar and get_node("../../../UI/Stars").numPlayerStars > 0:
 		placeStar()
 		emit_signal("examineMouseExit")
 		emit_signal("examineMouseEnter", self, "Activated Star Stone")

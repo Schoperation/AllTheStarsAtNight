@@ -34,7 +34,7 @@ shaded = true
 alpha_cut = 2
 frames = SubResource( 1 )
 animation = "activated"
-frame = 7
+frame = 6
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
