@@ -2,7 +2,6 @@
 
 [ext_resource path="res://assets/ground/trail.png" type="Texture" id=1]
 
-
 [sub_resource type="CubeMesh" id=1]
 
 [sub_resource type="SpatialMaterial" id=2]

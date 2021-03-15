@@ -18,8 +18,12 @@ func _ready():
 	chunkArray.append($OriginChunk)
 	
 	# Gen
+	setupSpawnChunk()
 	genWorld(10)
 	addStars(numStars)
+	
+func setupSpawnChunk():
+	$OriginChunk.addTrail()
 	
 func genWorld(size):
 	"""	

@@ -4,6 +4,7 @@ extends StaticBody
 export var id = 0
 var structureChunk = false
 var hasFireflies = false
+var isRingChunk = false # Spawn chunk only
 
 # preloads
 var treeScene = preload("res://environment/Tree.tscn")
@@ -28,6 +29,10 @@ func _ready():
 	die = round(rand_range(0, 4))
 	if die == 1:
 		hasFireflies = true
+
+# Adds the ring structure 
+func addRing():
+	pass
 	
 # Populates the chunk with objects like trees
 func populate():
@@ -106,15 +111,14 @@ func addTrail():
 			
 			add_child(trailPiece)
 			currentX += 2
-		amount = round(rand_range(6, 8))
+		amount = round(rand_range(5, 9))
 		currentZ += 2
-		currentX = rand_range(-6, -4)
+		currentX = rand_range(-10, -8)
 
 # Summon some firefly particles
 func addFireflies():
 	var fireflies = firefliesScene.instance()
 	fireflies.transform.origin = Vector3(self.transform.origin.x, 3, self.transform.origin.z)
-	#fireflies.translate(Vector3(0, 10, 0))
 	add_child(fireflies)
 	
 # Generates structures
