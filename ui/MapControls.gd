@@ -15,15 +15,24 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_released("zoom_in"):
-		t -= 0.1
-		if t < 0:
+		if t > 0:
+			t -= 0.1
+			
+			# Only call the method if it isn't already being called by rotation
+			if r == -10 or r == 0 or r == 10:
+				changeCameraPos()
+		elif t < 0:
 			t = 0
-		changeCameraPos()
+			changeCameraPos()
 	elif Input.is_action_just_released("zoom_out"):
-		t += 0.1
-		if t > 2.0:
+		if t < 2.0:
+			t += 0.1
+			
+			if r == -10 or r == 0 or r == 10:
+				changeCameraPos()
+		elif t > 2.0:
 			t = 2.0
-		changeCameraPos()
+			changeCameraPos()
 
 # For smoother rotation
 func _process(delta):
@@ -36,16 +45,20 @@ func _process(delta):
 		changeCameraPos()
 	# Actual rotation
 	elif Input.is_action_pressed("rotate_left"):
-		r -= 0.5 * (1 + r/10.5) # Slow down as we approach limit
-		if r < -10:
+		if r > -10:
+			r -= 0.5 * (1 + r/10.5) # Slow down as we approach limit
+			changeCameraPos()
+		elif r < -10:
 			r = -10
-		changeCameraPos()
+			changeCameraPos()
 	elif Input.is_action_pressed("rotate_right"):
-		r += 0.5 * (1 - r/10.5)
-		if r > 10:
+		if r < 10:
+			r += 0.5 * (1 - r/10.5)
+			changeCameraPos()
+		elif r > 10:
 			r = 10
-		changeCameraPos()
-		
+			changeCameraPos()
+				
 	# Deadzone
 	if r > -0.3 and r < 0.3 and r != 0:
 		r = 0
@@ -58,12 +71,7 @@ func changeCameraPos():
 	self.transform.origin.z = defaultPos.z * parabolaZ - abs(0.5 * r) + 1
 	self.transform.origin.y = defaultPos.y * parabolaY
 	self.transform.origin.x = r
-	
-	# Set angle
-	# theta = arctan(z/y)
-	#var theta = atan(parabolaY/(parabolaZ - 0.1)) * -1.1
-	#self.rotation.x = theta
-	
+
 	look_at(get_parent().transform.origin, Vector3(0, 1, 0))
 	changeAngles()
 
