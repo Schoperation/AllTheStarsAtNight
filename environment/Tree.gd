@@ -14,7 +14,7 @@ func _ready():
 	if $AnimatedSprite3D.animation == "default":
 		mouseName = "Oak Tree"
 	elif $AnimatedSprite3D.animation == "pine":
-		mouseName = "Smooth Pine Tree"
+		mouseName = "Another Pine Tree"
 	elif $AnimatedSprite3D.animation == "pine_2":
 		mouseName = "Pine Tree"
 	else:

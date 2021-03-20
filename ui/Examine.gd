@@ -10,7 +10,7 @@ var playerThought
 var quotes = {
 	"Oak Tree": "Pretty normal tree.",
 	"Pine Tree": "Even more normal than the oak tree.",
-	"Smooth Pine Tree": "The art team had a hiccup.",
+	"Another Pine Tree": "Looks like a Xmas tree.",
 	"Rock": "What are you looking at?",
 	"Star": "Very shiny. I wonder if I can pick it up?",
 	"Empty Star Stone": "That's a weirdly empty stone. Maybe something goes here?",

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/tree_proto.png-01c161c2430279997e15f283226f9401.s3tc.stex"
-path.etc2="res://.import/tree_proto.png-01c161c2430279997e15f283226f9401.etc2.stex"
+path.s3tc="res://.import/pine_tree_3.png-7653d29035f6770a5ff3b618abf67470.s3tc.stex"
+path.etc2="res://.import/pine_tree_3.png-7653d29035f6770a5ff3b618abf67470.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/trees/tree_proto.png"
-dest_files=[ "res://.import/tree_proto.png-01c161c2430279997e15f283226f9401.s3tc.stex", "res://.import/tree_proto.png-01c161c2430279997e15f283226f9401.etc2.stex" ]
+source_file="res://assets/trees/pine_tree_3.png"
+dest_files=[ "res://.import/pine_tree_3.png-7653d29035f6770a5ff3b618abf67470.s3tc.stex", "res://.import/pine_tree_3.png-7653d29035f6770a5ff3b618abf67470.etc2.stex" ]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=true
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
