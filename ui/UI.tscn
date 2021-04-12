@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://fonts/cmu-typewriter/Typewriter.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/Examine.gd" type="Script" id=2]
 [ext_resource path="res://ui/Version.gd" type="Script" id=3]
+[ext_resource path="res://ui/Dialogue.gd" type="Script" id=4]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -77,4 +78,39 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DialogueBox" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -449.0
+margin_top = -147.0
+margin_right = 452.0
+custom_fonts/font = ExtResource( 1 )
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 0.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DispDiaTimer" type="Timer" parent="DialogueBox"]
+one_shot = true
+
+[node name="NewDialogueTimer" type="Timer" parent="DialogueBox"]
+wait_time = 5.0
+autostart = true
+
+[node name="NextLineTimer" type="Timer" parent="DialogueBox"]
+wait_time = 2.0
+one_shot = true
+
+[node name="NextCharTimer" type="Timer" parent="DialogueBox"]
+wait_time = 0.05
 [connection signal="timeout" from="PlayerThought/DisplayTimer" to="MouseTextContainer/MouseText" method="_on_DisplayTimer_timeout"]
+[connection signal="timeout" from="DialogueBox/NewDialogueTimer" to="DialogueBox" method="_on_NewDialogueTimer_timeout"]
+[connection signal="timeout" from="DialogueBox/NextLineTimer" to="DialogueBox" method="_on_NextLineTimer_timeout"]
+[connection signal="timeout" from="DialogueBox/NextCharTimer" to="DialogueBox" method="_on_NextCharTimer_timeout"]
