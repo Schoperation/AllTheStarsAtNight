@@ -10,17 +10,39 @@ func _ready():
 	move_lock_y = true
 
 func _physics_process(delta):
-	# Determine direction
+	# Determine direction and animation... if key up, do idle animation
 	var direction = Vector3()
 	if Input.is_action_pressed("move_down"):
 		direction.z = 1
+		$AnimatedSprite3D.animation = "walk_front"
+	elif Input.is_action_just_released("move_down"):
+		$AnimatedSprite3D.animation = "idle_front"
+
 	if Input.is_action_pressed("move_up"):
 		direction.z = -1
+		$AnimatedSprite3D.animation = "walk_back"
+	elif Input.is_action_just_released("move_up"):
+		$AnimatedSprite3D.animation = "idle_back"
+
 	if Input.is_action_pressed("move_left"):
 		direction.x = -1
+		
+		if $AnimatedSprite3D.animation != "walk_front" and $AnimatedSprite3D.animation != "walk_back":
+			$AnimatedSprite3D.animation = "walk_side"
+		$AnimatedSprite3D.flip_h = true
+	elif Input.is_action_just_released("move_left"):
+		$AnimatedSprite3D.animation = "idle_side"
+
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
+		
+		if $AnimatedSprite3D.animation != "walk_front" and $AnimatedSprite3D.animation != "walk_back":
+			$AnimatedSprite3D.animation = "walk_side"
+		$AnimatedSprite3D.flip_h = false
+	elif Input.is_action_just_released("move_right"):
+		$AnimatedSprite3D.animation = "idle_side"
 	
+	print($AnimatedSprite3D.animation)
 	# Accelerating
 	if direction and currentSpeed < maxSpeed:
 		currentSpeed += 0.5

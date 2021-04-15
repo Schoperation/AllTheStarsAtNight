@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/player_idle_front_1.png-a95673c432dac402d6afca01c64ce5f2.s3tc.stex"
-path.etc2="res://.import/player_idle_front_1.png-a95673c432dac402d6afca01c64ce5f2.etc2.stex"
+path.s3tc="res://.import/player_walk_side_2.png-c0c15170a8bc9d63d37a8d70445c9424.s3tc.stex"
+path.etc2="res://.import/player_walk_side_2.png-c0c15170a8bc9d63d37a8d70445c9424.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/people/player/player_idle_front_1.png"
-dest_files=[ "res://.import/player_idle_front_1.png-a95673c432dac402d6afca01c64ce5f2.s3tc.stex", "res://.import/player_idle_front_1.png-a95673c432dac402d6afca01c64ce5f2.etc2.stex" ]
+source_file="res://assets/people/player/player_walk_side_2.png"
+dest_files=[ "res://.import/player_walk_side_2.png-c0c15170a8bc9d63d37a8d70445c9424.s3tc.stex", "res://.import/player_walk_side_2.png-c0c15170a8bc9d63d37a8d70445c9424.etc2.stex" ]
 
 [params]
 
