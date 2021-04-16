@@ -5,7 +5,7 @@ var scene = preload("res://world/Chunk.tscn")
 var chunkArray = []
 var rng = RandomNumberGenerator.new()
 export var numStars = 10
-export var worldSize = 4
+export var worldSize = 10
 var worldWidth = 0 # Used for fog in MapControls
 
 # Used in genWorld(size) to determine where to spawn chunks for a particular iteration
@@ -23,7 +23,7 @@ func _ready():
 	setupSpawnChunk()
 	genWorld(worldSize)
 	addStars(numStars)
-	self.worldWidth = 50 * worldSize
+	self.worldWidth = 50 * worldSize + 50
 	
 	# Gotta do this on the root node of the world
 	get_tree().paused = true
@@ -166,7 +166,6 @@ func addStars(num):
 	var possibleIds = []
 	for i in range(chunkArray.size()):
 		possibleIds.append(i)
-	print(possibleIds.size())
 	
 	# Now, for the ids we'll spawn stars in
 	var ids = []

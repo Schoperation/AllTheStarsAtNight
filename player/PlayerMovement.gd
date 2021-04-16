@@ -4,7 +4,7 @@ export var maxSpeed = 15
 var currentSpeed = 0
 var currentVel = Vector3()
 const GROUND_LEVEL = 2.35
-const THRESHOLD = 40
+const THRESHOLD = 2
 
 func _ready():
 	# Prevent their y from moving
@@ -70,13 +70,13 @@ func _physics_process(delta):
 		transform.origin = Vector3(transform.origin.x, GROUND_LEVEL, transform.origin.z)
 		
 	# Are we almost out of bounds?
-	"""
 	if abs(transform.origin.x) > get_node("../").worldWidth - THRESHOLD:
-		transform.origin = Vector3(-1 * transform.origin.x - sign(transform.origin.x) * 20, transform.origin.y, transform.origin.z)
+		#transform.origin = Vector3(-1 * transform.origin.x - sign(transform.origin.x) * 20, transform.origin.y, transform.origin.z)
+		transform.origin = Vector3(transform.origin.x - sign(transform.origin.x), transform.origin.y, transform.origin.z)
 	elif abs(transform.origin.z) > get_node("../").worldWidth - THRESHOLD:
-		transform.origin = Vector3(transform.origin.x, transform.origin.y, -1 * transform.origin.z - sign(transform.origin.x) * 20)
-	"""
-
+		#transform.origin = Vector3(transform.origin.x, transform.origin.y, -1 * transform.origin.z - sign(transform.origin.x) * 20)
+		transform.origin = Vector3(transform.origin.x, transform.origin.y, transform.origin.z - sign(transform.origin.z))
+		
 # When we enter the game end body
 func _on_GameEnd_body_entered(body):
 	if body == self:
