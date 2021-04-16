@@ -13,20 +13,23 @@ var textFiles = [
 	"mosquitoes"
 ]
 
+var currentSpeaker
+
 # Increment
 var increment = 0.00
 
 # Should we make them talk?
 func _on_NewDialogueTimer_timeout():
 	# Every number of seconds, random chance for them to start yapping, if not already.
-	var die = round(rand_range(0, 5))
+	var die = round(rand_range(0, 7))
 	if die == 2:
 		$NewDialogueTimer.stop()
 		
 		# Alright, let's pick a random text file to load and parse. Remove it from the list for no repeats.
-		var textFile = textFiles[floor(rand_range(0, textFiles.size()))]
-		textFiles.remove(textFiles.find(textFile))
-		startDialogue(textFile)
+		if not textFiles.empty():
+			var textFile = textFiles[floor(rand_range(0, textFiles.size()))]
+			textFiles.remove(textFiles.find(textFile))
+			startDialogue(textFile)
 	else:
 		#print("Nope...")
 		pass
@@ -47,11 +50,11 @@ func startDialogue(textFile):
 		var line = file.get_line()
 		
 		# First part indicates Barfite or Vigil
-		var speaker = line.substr(0, 0)
+		var speaker = line.substr(0, 1)
 		if speaker == "B":
-			pass
+			currentSpeaker = get_node("../../Barfite/Voice")
 		else:
-			pass
+			currentSpeaker = get_node("../../Vigil/Voice")
 			
 		# Extract actual dialogue
 		if line != "":
@@ -72,6 +75,7 @@ func displayDialogue(dialogue):
 	
 	# Now do it, on a timer
 	$NextCharTimer.start()
+	currentSpeaker.playing = true
 	
 	# Use our own stupid little timer because godot is dumb with waiting and such and dumb yields oooOOooOoo
 	$DispDiaTimer.set_wait_time(dialogue.length() * $NextCharTimer.wait_time + 0.2)
@@ -81,6 +85,7 @@ func displayDialogue(dialogue):
 	# Pause before showing the next line
 	$NextCharTimer.stop()
 	$NextLineTimer.start()
+	currentSpeaker.playing = false
 	
 	yield($NextLineTimer, "timeout")
 	pass

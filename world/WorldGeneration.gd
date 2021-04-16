@@ -22,6 +22,9 @@ func _ready():
 	genWorld(10)
 	addStars(numStars)
 	
+	# Gotta do this on the root node of the world
+	get_tree().paused = true
+	
 func setupSpawnChunk():
 	$OriginChunk.addTrail()
 	
@@ -135,9 +138,9 @@ func getChunkById(id) -> int:
 		return chunkArray[id]
 		
 func addStars(num):
-	# Generate our list of possible IDs
+	# Generate our list of possible IDs (except last one)
 	var possibleIds = []
-	for i in range(chunkArray.size()):
+	for i in range(chunkArray.size() - 1):
 		possibleIds.append(i)
 	
 	# Now, for the ids we'll spawn stars in

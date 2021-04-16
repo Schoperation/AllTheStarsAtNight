@@ -2,6 +2,7 @@ B: Alright so earlier this month I was going through old stuff with my dad right
 B: Flipping through the pages it had the normal stuff...
 B: WASD to move around,
 B: Use the mouse to click and interact with things,
+B: Use the scroll wheel to zoom in and out,
 B: Hell you could use Q and E to rotate the board, which was interesting.
 V: What was it called?
 B: Something blood dark something. It was some adapted board game or something.

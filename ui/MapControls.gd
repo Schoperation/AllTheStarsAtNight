@@ -5,13 +5,19 @@ Script for zooming and rotating the map
 """
 
 # Keep track of where we are
-var t = 1 # zoom
+var t = 2 # zoom
 var r = 0 # rotate
 var defaultPos
+
+# For initial zooming in
+# 0 = x angle change done, 1 = zooming in done, 2 = everything done
+var initialStepsDone = 0
 
 func _ready():
 	defaultPos = self.transform.origin
 	changeCameraPos()
+	# Initial place for camera
+	self.rotate_x(deg2rad(30))
 
 func _input(event):
 	if Input.is_action_just_released("zoom_in"):
@@ -86,3 +92,30 @@ func changeAngles():
 
 	for item in get_tree().get_nodes_in_group("Followers"):
 		item.get_node("AnimatedSprite3D").rotation = Vector3(item.get_node("AnimatedSprite3D").rotation.x, angle, 0)
+
+# Used at the beginning for the opening shot
+func _on_ZoomTimer_timeout():
+	# We can either change the x angle to 68 degrees, or change t
+	if round(self.rotation_degrees.x) != -68 and initialStepsDone == 0:
+		# Use Gaussian function to determine change
+		var a = 0.6
+		var b = 53
+		var c = 7
+		
+		var chg = a * exp(-1 * pow(abs(self.rotation_degrees.x) - b, 2) / (2 * c * c))
+		self.rotation = Vector3(self.rotation.x - deg2rad(chg), self.rotation.y, self.rotation.z)
+	elif initialStepsDone == 0:
+		initialStepsDone = 1
+	elif t > 1 and initialStepsDone == 1:
+		# Zoom in
+		var a = 0.05
+		var b = 1.5
+		var c = 0.2
+		
+		var chg = a * exp(-1 * pow(t - b, 2) / (2 * c * c))
+		t -= chg
+		changeCameraPos()
+	elif initialStepsDone == 1:
+		initialStepsDone = 2
+		$ZoomTimer.stop()
+	

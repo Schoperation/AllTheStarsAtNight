@@ -14,6 +14,12 @@ func _ready():
 	
 	# Add to followers group
 	add_to_group("Followers")
+	
+	# Determine pitch
+	if isBarfite:
+		$Voice.pitch_scale = 1.39
+	else:
+		$Voice.pitch_scale = 1.7
 
 func _process(delta):
 	pathfind()

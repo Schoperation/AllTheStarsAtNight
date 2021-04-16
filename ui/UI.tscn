@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fonts/cmu-typewriter/Typewriter.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/Examine.gd" type="Script" id=2]
 [ext_resource path="res://ui/Version.gd" type="Script" id=3]
 [ext_resource path="res://ui/Dialogue.gd" type="Script" id=4]
+[ext_resource path="res://assets/ui/logo.png" type="Texture" id=5]
+[ext_resource path="res://ui/Init.gd" type="Script" id=6]
+[ext_resource path="res://sound/night_ambience.ogg" type="AudioStream" id=7]
 
 [node name="UI" type="CanvasLayer"]
 
 [node name="Version" type="RichTextLabel" parent="."]
+visible = false
 margin_right = 538.0
 margin_bottom = 58.0
 mouse_filter = 2
@@ -103,7 +107,6 @@ one_shot = true
 
 [node name="NewDialogueTimer" type="Timer" parent="DialogueBox"]
 wait_time = 10.0
-autostart = true
 
 [node name="NextLineTimer" type="Timer" parent="DialogueBox"]
 wait_time = 2.0
@@ -111,7 +114,114 @@ one_shot = true
 
 [node name="NextCharTimer" type="Timer" parent="DialogueBox"]
 wait_time = 0.05
+
+[node name="MainMenu" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="MainMenu"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -332.599
+margin_top = 41.38
+margin_right = 307.401
+margin_bottom = 241.38
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="Button" parent="MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -65.5
+margin_top = 255.462
+margin_right = 65.5
+margin_bottom = 306.462
+focus_mode = 1
+custom_fonts/font = ExtResource( 1 )
+enabled_focus_mode = 1
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsButton" type="Button" parent="MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -65.5
+margin_top = 346.177
+margin_right = 65.5
+margin_bottom = 397.177
+focus_mode = 1
+custom_fonts/font = ExtResource( 1 )
+enabled_focus_mode = 1
+text = "Credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="MainMenu"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -264.0
+margin_top = 217.048
+margin_right = 264.0
+margin_bottom = 514.048
+custom_fonts/font = ExtResource( 1 )
+text = "Programmed, drawn, animated, and overall put together with both love and agony by Christopher Schop.
+
+Night ambience from mixkit.co.
+
+Various levels of support from professors, family, and friends.
+
+"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="MainMenu"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -71.0172
+margin_top = 475.362
+margin_right = 59.9828
+margin_bottom = 526.362
+focus_mode = 1
+custom_fonts/font = ExtResource( 1 )
+enabled_focus_mode = 1
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -12.117
+autoplay = true
 [connection signal="timeout" from="PlayerThought/DisplayTimer" to="MouseTextContainer/MouseText" method="_on_DisplayTimer_timeout"]
 [connection signal="timeout" from="DialogueBox/NewDialogueTimer" to="DialogueBox" method="_on_NewDialogueTimer_timeout"]
 [connection signal="timeout" from="DialogueBox/NextLineTimer" to="DialogueBox" method="_on_NextLineTimer_timeout"]
 [connection signal="timeout" from="DialogueBox/NextCharTimer" to="DialogueBox" method="_on_NextCharTimer_timeout"]
+[connection signal="pressed" from="MainMenu/PlayButton" to="MainMenu" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MainMenu/CreditsButton" to="MainMenu" method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="MainMenu/BackButton" to="MainMenu" method="_on_BackButton_pressed"]

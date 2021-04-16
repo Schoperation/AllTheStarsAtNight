@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/people/follower.png" type="Texture" id=1]
 [ext_resource path="res://follower/Follower.gd" type="Script" id=2]
+[ext_resource path="res://sound/talk.ogg" type="AudioStream" id=3]
 
-
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.14223, 2.90135, 0.152363 )
 
 [sub_resource type="SpriteFrames" id=2]
@@ -20,10 +20,14 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.900698, 0.434445, 0, -0.434445, 0.900698, 0, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.900698, 0.434445, 0, -0.434445, 0.900698, 0, 0, 0 )
 shaded = true
 alpha_cut = 2
 frames = SubResource( 2 )
+
+[node name="Voice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -7.068
