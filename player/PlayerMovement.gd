@@ -42,7 +42,6 @@ func _physics_process(delta):
 	elif Input.is_action_just_released("move_right"):
 		$AnimatedSprite3D.animation = "idle_side"
 	
-	print($AnimatedSprite3D.animation)
 	# Accelerating
 	if direction and currentSpeed < maxSpeed:
 		currentSpeed += 0.5
