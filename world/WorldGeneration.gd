@@ -5,6 +5,8 @@ var scene = preload("res://world/Chunk.tscn")
 var chunkArray = []
 var rng = RandomNumberGenerator.new()
 export var numStars = 10
+export var worldSize = 4
+var worldWidth = 0 # Used for fog in MapControls
 
 # Used in genWorld(size) to determine where to spawn chunks for a particular iteration
 enum GenDirec {LEFT = 0, DOWN = 1, RIGHT = 2, UP = 3}
@@ -19,8 +21,9 @@ func _ready():
 	
 	# Gen
 	setupSpawnChunk()
-	genWorld(10)
+	genWorld(worldSize)
 	addStars(numStars)
+	self.worldWidth = 50 * worldSize
 	
 	# Gotta do this on the root node of the world
 	get_tree().paused = true
@@ -37,6 +40,11 @@ func genWorld(size):
 	10	1	@	5	18
 	11	2	3	4	17
 	12	13	14	15	16
+	
+	Total chunks as you add layers
+	1, 9, 17, 25, 33, 41
+	
+	1, 2,  3,  4,  5,  6
 	
 	In order to accomplish that, we will move in a certain direction x times, twice. 
 	We go to the left once,
@@ -91,7 +99,23 @@ func genWorld(size):
 				currentX += 100
 			3:
 				currentZ -= 100
-			
+	
+	# Outside of the main while loop. Go all the way in one more direction so we have a square world.
+	counter = 1
+	while counter < length:
+		createNewChunk(currentX, currentZ)
+		counter += 1
+		
+		# Determine new X and Z values
+		match direction:
+			0:
+				currentX -= 100
+			1:
+				currentZ += 100
+			2:
+				currentX += 100
+			3:
+				currentZ -= 100
 			
 func genPath(length):
 	# $ $ $
@@ -138,10 +162,11 @@ func getChunkById(id) -> int:
 		return chunkArray[id]
 		
 func addStars(num):
-	# Generate our list of possible IDs (except last one)
+	# Generate our list of possible IDs
 	var possibleIds = []
-	for i in range(chunkArray.size() - 1):
+	for i in range(chunkArray.size()):
 		possibleIds.append(i)
+	print(possibleIds.size())
 	
 	# Now, for the ids we'll spawn stars in
 	var ids = []

@@ -20,7 +20,9 @@ func _ready():
 	self.rotate_x(deg2rad(30))
 
 func _input(event):
-	if Input.is_action_just_released("zoom_in"):
+	if initialStepsDone != 2:
+		pass
+	elif Input.is_action_just_released("zoom_in"):
 		if t > 0:
 			t -= 0.1
 			
@@ -43,7 +45,9 @@ func _input(event):
 # For smoother rotation
 func _process(delta):
 	# To "snap" back from rotated view
-	if r > 0 and not Input.is_action_pressed("rotate_right"):
+	if initialStepsDone != 2:
+		pass
+	elif r > 0 and not Input.is_action_pressed("rotate_right"):
 		r -= 0.5 * (1 - r/10.5)
 		changeCameraPos()
 	elif r < 0 and not Input.is_action_pressed("rotate_left"):
@@ -69,7 +73,10 @@ func _process(delta):
 	if r > -0.3 and r < 0.3 and r != 0:
 		r = 0
 		changeCameraPos()
-			
+		
+	# This is for changing the fog as one gets closer to the border of the map.
+	# Default begin = 54, end = 180
+	
 func changeCameraPos():
 	# Follow a parabola
 	var parabolaZ = 0.5 * (t + 1.5)
