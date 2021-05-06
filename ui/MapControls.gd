@@ -77,6 +77,7 @@ func _process(delta):
 	# This is for changing the fog as one gets closer to the border of the map.
 	# Default begin = 54, end = 180
 	
+	
 func changeCameraPos():
 	# Follow a parabola
 	var parabolaZ = 0.5 * (t + 1.5)
